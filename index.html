@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вайб-кодинг для педагогов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --card-bg2: #1c2230;
+            --accent-purple: #a371f7;
+            --accent-blue: #58a6ff;
+            --accent-green: #3ddcac;
+            --text-main: #c9d1d9;
+            --text-bright: #ffffff;
+            --nav-bg: rgba(13, 17, 23, 0.97);
+            --border: #30363d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Manrope', 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .nav-inner {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 4px 8px;
+            box-sizing: border-box;
+        }
+
+        .nav-logo-text {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.2;
+            max-width: 130px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a.nav-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        nav a.nav-link:hover { color: var(--accent-blue); }
+
+        /* HEADER */
+        header {
+            padding: 90px 0 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        header p.subtitle {
+            font-size: 1rem;
+            color: #8b949e;
+            margin-bottom: 22px;
+        }
+
+        /* SECTIONS */
+        section { padding: 28px 0; }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-bright);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .section-heading-wrap { margin-bottom: 16px; }
+        .section-heading-wrap p { color: #8b949e; font-size: 0.95rem; margin-top: 4px; }
+
+        .content-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+
+        /* INFO BLOCKS */
+        .info-block { margin-bottom: 16px; }
+        .info-block:last-child { margin-bottom: 0; }
+        .info-block strong {
+            color: var(--accent-purple);
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .grid-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        /* PROBLEM HIGHLIGHT BOX */
+        .problem-box {
+            background: var(--card-bg2);
+            border-radius: 12px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+        }
+
+        .problem-box h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 10px;
+        }
+
+        .highlight-quote {
+            background: rgba(88,166,255,0.08);
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 0.92rem;
+            color: var(--text-main);
+        }
+
+        /* WHAT CAN YOU CREATE — 6 cards */
+        .create-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .create-card {
+            background: var(--card-bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 16px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .create-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        .create-card .icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+
+        .create-card .title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 6px;
+        }
+
+        .create-card p { font-size: 0.83rem; color: #8b949e; line-height: 1.4; }
+
+        /* IGROTEKA */
+        .igroteka-block {
+            background: var(--card-bg2);
+            border-radius: 12px;
+            padding: 20px 22px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .igroteka-block h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 10px;
+        }
+
+        .igroteka-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.78rem;
+            color: var(--text-main);
+        }
+
+        .igroteka-bullets {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+
+        .igroteka-bullets li {
+            padding: 5px 0;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            display: flex;
+            gap: 8px;
+        }
+
+        .igroteka-bullets li span.bicon { flex-shrink: 0; }
+
+        /* IFRAME */
+        .iframe-wrapper {
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-top: 14px;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* COURSES */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .course-card {
+            background: var(--card-bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 22px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .course-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .course-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-purple);
+            opacity: 0.4;
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+
+        .course-info { flex: 1; }
+
+        .course-info .course-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+
+        .course-info .course-link {
+            font-size: 0.78rem;
+            color: var(--accent-blue);
+        }
+
+        .course-arrow {
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* GIFT */
+        .gift-section {
+            text-align: center;
+            border: 2px dashed var(--border);
+            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+        }
+
+        .gift-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            margin: 8px 5px;
+            transition: 0.2s;
+            font-size: 0.92rem;
+        }
+
+        .btn:hover { opacity: 0.88; transform: scale(1.02); }
+
+        .instruction-list {
+            text-align: left;
+            font-size: 0.88rem;
+            background: rgba(0,0,0,0.25);
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-top: 14px;
+            line-height: 1.8;
+        }
+
+        .instruction-list p { margin-bottom: 2px; }
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8b949e;
+            border-top: 1px solid var(--border);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 640px) {
+            .grid { grid-template-columns: 1fr; }
+            .create-grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 1.7rem; }
+            .nav-links { gap: 10px; }
+            .nav-logo-text { display: none; }
+            .course-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+
+        @media (max-width: 420px) {
+            .create-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://on-skills.ru/" class="nav-logo" target="_blank" rel="noopener">
+            <img src="https://fs20.getcourse.ru/fileservice/file/download/a/174720/sc/298/h/c7eb295d59c793e66f91ff4a212aab0f.png" alt="ПедСреда" onerror="this.style.display='none'">
+            <span class="nav-logo-text">Образовательный центр «ПедСреда»</span>
+        </a>
+        <div class="nav-links">
+            <a href="#intro" class="nav-link">Что это?</a>
+            <a href="#why" class="nav-link">Зачем учителю?</a>
+            <a href="#examples" class="nav-link">Примеры</a>
+            <a href="#courses" class="nav-link">Обучение</a>
+            <a href="#download" class="nav-link">Подарок</a>
+        </div>
+    </div>
+</nav>
+
+<header id="intro">
+    <div class="container">
+        <h1>Создание цифровых уроков без знания кода</h1>
+        <p class="subtitle">Vibe Coding для педагога</p>
+        <div style="position: relative; padding-top: 56.25%; width: 100%">
+            <iframe src="https://kinescope.io/embed/9h2eMZyUDscjQ6JJkqGUo3"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
+                    frameborder="0" allowfullscreen
+                    style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+            </iframe>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- ЧТО ТАКОЕ -->
+    <section>
+        <h2>🚀 Что такое вайб-кодинг?</h2>
+        <div class="content-card">
+            <p class="info-block">Это новый подход к созданию программ, где вы выступаете не как программист, а как <b>режиссер или архитектор</b>. Вы просто объясняете нейросети словами, что должен делать ваш идеальный тренажер или тест, и она мгновенно превращает ваши мысли в рабочий код.</p>
+            <div class="grid">
+                <div class="grid-item">
+                    <div class="info-block">
+                        <strong>Программирование на языке смыслов</strong>
+                        Вам не нужно учить программирование. Главное — ваша педагогическая задумка и «вайб» (настроение) проекта.
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="info-block">
+                        <strong>Мгновенный результат</strong>
+                        Видите изменения сразу. Ошибка в коде? Нейросеть сама её исправит по вашему замечанию.
+                    </div>
+                </div>
+            </div>
+            <p style="font-size: 0.9rem; margin-top: 14px;">Вайб-кодинг — это когда технология становится не барьером, а инструментом творчества педагога-гуманитария. 🎨</p>
+        </div>
+    </section>
+
+    <!-- ЗАЧЕМ УЧИТЕЛЮ -->
+    <section id="why">
+        <div class="section-heading-wrap">
+            <h2>💡 Почему это важно для педагога?</h2>
+            <p>Вайб-кодинг — не очередной технологический тренд. Это практичный инструмент, который экономит время и делает уроки живее.</p>
+        </div>
+        <div class="content-card">
+
+            <div class="problem-box">
+                <h3>🚨 Проблема, которую вы знаете</h3>
+                <p style="font-size: 0.9rem;">Каждый педагог сталкивался с этим: хочется провести урок с игровыми заданиями. Но готовые платформы — платные, неудобные или не подходят для вашей темы.</p>
+                <div class="highlight-quote">
+                    ⚡ Вайб-кодинг решает эту проблему. Теперь вы сами создаёте именно то, что нужно для <i>вашей</i> темы — буквально за 10–20 минут.
+                </div>
+            </div>
+
+            <div class="info-block">
+                <strong>🏠 Полная автономность и офлайн</strong>
+                Это ключевой плюс! Созданный вами материал — это обычный файл. Его можно запустить <b>без интернета</b> прямо с флешки или рабочего стола. Урок не сорвется из-за сбоев в сети.
+            </div>
+
+            <div class="grid">
+                <div class="grid-item">
+                    <div class="info-block">
+                        <strong>⚡ Экономия времени</strong>
+                        Больше не нужно часами искать «тот самый» шаблон. Вы создаете свой уникальный продукт за 10–15 минут.
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="info-block">
+                        <strong>💎 Авторский бренд</strong>
+                        Ваши материалы выглядят современно и стильно, повышая вовлеченность учеников и ваш авторитет.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРИМЕРЫ И ФОРМАТЫ -->
+    <section id="examples">
+        <div class="section-heading-wrap">
+            <span class="section-label">Раздел 3</span>
+            <h2>🎮 Примеры и форматы</h2>
+        </div>
+        <div class="content-card">
+
+            <!-- ЧТО МОЖНО СОЗДАТЬ -->
+            <h3 style="color: var(--text-bright); font-size: 1.05rem; font-weight: 700; margin-bottom: 4px;">🗂 Что можно создать за один разговор с ИИ?</h3>
+
+            <div class="create-grid">
+                <div class="create-card">
+                    <span class="icon">🎮</span>
+                    <div class="title">Интерактивные игры</div>
+                    <p>Викторины, пазлы, «найди пару», кроссворды — открываются в браузере без интернета.</p>
+                </div>
+                <div class="create-card">
+                    <span class="icon">📋</span>
+                    <div class="title">Тесты и опросники</div>
+                    <p>Тест с автопроверкой, который сам считает баллы и показывает правильный ответ.</p>
+                </div>
+                <div class="create-card">
+                    <span class="icon">🗺</span>
+                    <div class="title">Интерактивные схемы</div>
+                    <p>Карты и схемы с кликабельными элементами — ученики сами исследуют материал.</p>
+                </div>
+                <div class="create-card">
+                    <span class="icon">🃏</span>
+                    <div class="title">Флеш-карточки</div>
+                    <p>Карточки для запоминания терминов, формул, дат — переворачиваются при клике.</p>
+                </div>
+                <div class="create-card">
+                    <span class="icon">📊</span>
+                    <div class="title">Красивые презентации</div>
+                    <p>Страницы-лонгриды с анимацией — удобнее обычных слайдов и без PowerPoint.</p>
+                </div>
+                <div class="create-card">
+                    <span class="icon">🧮</span>
+                    <div class="title">Тренажёры и калькуляторы</div>
+                    <p>Онлайн-тренажёры для отработки навыков: счёт, формулы, правила языка.</p>
+                </div>
+            </div>
+
+            <!-- ИГРОТЕКА -->
+            <div class="igroteka-block">
+                <h3>🎲 Игротека педагога</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Перед вами — <b>Игротека</b>, коллекция интерактивных учебных игр, созданных методом вайб-кодинга. Живой пример того, что можно сделать за один разговор с ИИ:</p>
+
+                <ul class="igroteka-bullets">
+                    <li><span class="bicon">🎮</span> Все игры открываются прямо в браузере — ничего устанавливать не нужно</li>
+                    <li><span class="bicon">🗂</span> Работают на компьютере, планшете и смартфоне</li>
+                    <li><span class="bicon">🎨</span> Красивый дизайн и понятный интерфейс для учеников любого возраста</li>
+                    <li><span class="bicon">⚡</span> Каждая игра создана с нуля с помощью ИИ — без единой строчки ручного кода</li>
+					<li><span class="bicon">⚡</span> Смотрите, как работают готовые материалы, созданные с помощью вайб-кодинга. Запускайте их прямо отсюда и используйте в своей практике</li>
+                </ul>
+
+                <div class="igroteka-tags">
+                    <span class="tag">🎮 Игровые механики</span>
+                    <span class="tag">📋 Тесты и викторины</span>
+                    <span class="tag">🃏 Карточные игры</span>
+                    <span class="tag">🧩 Головоломки</span>
+                    <span class="tag">🏆 Рейтинги и очки</span>
+                </div>
+
+                <div class="iframe-wrapper">
+                    <iframe src="https://urova505.github.io/Igroteka/"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- КУРСЫ -->
+    <section id="courses">
+        <div class="section-heading-wrap">
+            <h2>🎓 Где научиться?</h2>
+            <p>Авторские курсы образовательного центра «ПедСреда» — освойте вайб-кодинг и начните создавать интерактивные материалы уже в процессе обучения.</p>
+        </div>
+        <div class="content-card">
+            <div class="courses-grid">
+                <a href="https://on-skills.ru/game-ai" class="course-card" target="_blank" rel="noopener">
+                    <div class="course-num">01</div>
+                    <div class="course-info">
+                        <div class="course-title">Интерактивные игры с помощью нейросетей без программирования и онлайн-сервисов</div>
+                        <div class="course-link">on-skills.ru/game-ai</div>
+                    </div>
+                    <div class="course-arrow">→</div>
+                </a>
+                <a href="https://on-skills.ru/interaktiv-ai" class="course-card" target="_blank" rel="noopener">
+                    <div class="course-num">02</div>
+                    <div class="course-info">
+                        <div class="course-title">Мастерская цифрового педагога: интерактивы своими руками с помощью ИИ</div>
+                        <div class="course-link">on-skills.ru/interaktiv-ai</div>
+                    </div>
+                    <div class="course-arrow">→</div>
+                </a>
+                <a href="https://on-skills.ru/interaktiv-ai2" class="course-card" target="_blank" rel="noopener">
+                    <div class="course-num">03</div>
+                    <div class="course-info">
+                        <div class="course-title">Интерактивные учебные материалы с помощью ИИ</div>
+                        <div class="course-link">on-skills.ru/interaktiv-ai2</div>
+                    </div>
+                    <div class="course-arrow">→</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДАРОК -->
+    <section id="download">
+        <h2>🎁 Скачайте подарок</h2>
+        <div class="content-card gift-section">
+            <h3>Геймифицируйте ваше занятие!</h3>
+            <p>Заберите готовые интерактивные игры, которые можно использовать в классе прямо сейчас.</p>
+
+            <a href="https://disk.yandex.ru/d/LhkrmZERGdyr3g" class="btn">🎮 Игра 1</a>
+            <a href="https://disk.yandex.ru/d/6lthvIUY7Zn-4Q" class="btn">🎮 Игра 2</a>
+
+            <div class="instruction-list">
+                <p><b>Как запустить игру (краткая инструкция):</b></p>
+                <p>1. Скачайте файлы по кнопкам выше.</p>
+                <p>2. Если файл в архиве — извлеките его (правой кнопкой → Извлечь).</p>
+                <p>3. Просто нажмите дважды на файл с окончанием .html (он откроется в любом браузере).</p>
+                <p>4. Для работы игры <b>интернет не требуется</b> — смело используйте в классе!</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <div class="container">
+        Гайд по вайб-кодингу для педагогов &bull; Образовательный центр <a href="https://on-skills.ru/" style="color: var(--accent-blue); text-decoration: none;">«ПедСреда»</a> &bull; 2026
+    </div>
+</footer>
+
+</body>
+</html>
